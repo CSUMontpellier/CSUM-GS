@@ -6,3 +6,6 @@ docs/_build
 # Python
 *.pyc
 
+# Remove gnuradio generated python files
+receivers/*.py
+transmitters/*.py
