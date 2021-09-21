@@ -10,7 +10,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: rob1d_gmsk_2400_transmitter
+    id: csp_gmsk_2400_transmitter
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -21,7 +21,7 @@ options:
     run_options: run
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: rob1d_gmsk_2400_transmitter
+    title: csp_gmsk_2400_transmitter
     window_size: 1400,600
   states:
     bus_sink: false
@@ -86,7 +86,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [716, 782]
+    coordinate: [736, 780.0]
     rotation: 0
     state: enabled
 - name: interp_tx
@@ -106,10 +106,10 @@ blocks:
   parameters:
     beta: '6.76'
     comment: ''
-    cutoff_freq: '500000'
+    cutoff_freq: '20000'
     gain: '1'
     samp_rate: sdr_samp
-    width: '50000'
+    width: '4000'
     win: firdes.WIN_HAMMING
   states:
     bus_sink: false
@@ -163,42 +163,25 @@ blocks:
     coordinate: [890, 458]
     rotation: 0
     state: enabled
-- name: blocks_message_strobe_0
-  id: blocks_message_strobe
+- name: blocks_packed_to_unpacked_xx_0
+  id: blocks_packed_to_unpacked_xx
   parameters:
     affinity: ''
     alias: ''
+    bits_per_chunk: '1'
     comment: ''
+    endianness: gr.GR_LSB_FIRST
     maxoutbuf: '0'
     minoutbuf: '0'
-    msg: pmt.cons(pmt.PMT_NIL, pmt.pmt_to_python.numpy_to_uvector(numpy.array([ord(c)
-      for c in "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"],
-      numpy.uint8)))
-    period: '1000'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [64, 332]
-    rotation: 0
-    state: disabled
-- name: blocks_pdu_to_tagged_stream_0
-  id: blocks_pdu_to_tagged_stream
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    tag: packet_len
+    num_ports: '1'
     type: byte
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [611, 224]
+    coordinate: [304, 212.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: blocks_unpacked_to_packed_xx_0
   id: blocks_unpacked_to_packed_xx
   parameters:
@@ -261,7 +244,7 @@ blocks:
     label: ''
     short_id: i
     type: ''
-    value: '"ip:pluto.local"'
+    value: '"ip:pluto-mission-test.local"'
   states:
     bus_sink: false
     bus_source: false
@@ -346,7 +329,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [26, 134]
+    coordinate: [502, 11]
     rotation: 0
     state: enabled
 - name: import_0_0
@@ -359,7 +342,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [25, 181]
+    coordinate: [399, 12]
     rotation: 0
     state: enabled
 - name: note_0
@@ -449,23 +432,6 @@ blocks:
     coordinate: [287, 1025]
     rotation: 0
     state: true
-- name: satellites_hdlc_framer_0
-  id: satellites_hdlc_framer
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    postamble_bytes: '7'
-    preamble_bytes: '50'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [371, 217]
-    rotation: 0
-    state: true
 - name: satellites_nrzi_encode_0
   id: satellites_nrzi_encode
   parameters:
@@ -478,7 +444,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [884, 229]
+    coordinate: [512, 224.0]
     rotation: 0
     state: true
 - name: sub_port
@@ -490,7 +456,7 @@ blocks:
     label: Input
     short_id: s
     type: ''
-    value: '5501'
+    value: '"5500"'
   states:
     bus_sink: false
     bus_source: false
@@ -521,7 +487,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1087, 226]
+    coordinate: [696, 220.0]
     rotation: 0
     state: true
 - name: virtual_source_0
@@ -550,36 +516,38 @@ blocks:
     coordinate: [202, 548]
     rotation: 0
     state: true
-- name: zeromq_sub_msg_source_0
-  id: zeromq_sub_msg_source
+- name: zeromq_sub_source_0
+  id: zeromq_sub_source
   parameters:
-    address: default_id+":"+sub_port
+    address: default_ip+":"+sub_port
     affinity: ''
     alias: ''
     comment: ''
+    hwm: '-1'
     maxoutbuf: '0'
     minoutbuf: '0'
+    pass_tags: 'False'
     timeout: '100'
+    type: byte
+    vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [68, 238]
+    coordinate: [16, 204.0]
     rotation: 0
     state: enabled
 
 connections:
-- [blocks_message_strobe_0, strobe, satellites_hdlc_framer_0, in]
-- [blocks_pdu_to_tagged_stream_0, '0', satellites_nrzi_encode_0, '0']
+- [blocks_packed_to_unpacked_xx_0, '0', satellites_nrzi_encode_0, '0']
 - [blocks_unpacked_to_packed_xx_0, '0', digital_gfsk_mod_0, '0']
 - [digital_gfsk_mod_0, '0', virtual_sink_0, '0']
 - [freq_xlating_fft_filter_ccc_0, '0', iio_fmcomms2_sink_0, '0']
-- [satellites_hdlc_framer_0, out, blocks_pdu_to_tagged_stream_0, pdus]
 - [satellites_nrzi_encode_0, '0', virtual_sink_0_0, '0']
 - [virtual_source_0, '0', freq_xlating_fft_filter_ccc_0, '0']
 - [virtual_source_0, '0', qtgui_waterfall_sink_x_0, '0']
 - [virtual_source_0_0, '0', blocks_unpacked_to_packed_xx_0, '0']
-- [zeromq_sub_msg_source_0, out, satellites_hdlc_framer_0, in]
+- [zeromq_sub_source_0, '0', blocks_packed_to_unpacked_xx_0, '0']
 
 metadata:
   file_format: 1
