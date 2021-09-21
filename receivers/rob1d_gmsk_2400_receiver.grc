@@ -168,7 +168,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1059, 127]
+    coordinate: [35, 524]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -308,7 +308,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [558, 200]
+    coordinate: [157, 162]
     rotation: 0
     state: enabled
 - name: default_sdr_address
@@ -457,7 +457,7 @@ blocks:
     label: Input
     short_id: p
     type: ''
-    value: '5803'
+    value: '"5600"'
   states:
     bus_sink: false
     bus_source: false

@@ -182,6 +182,23 @@ blocks:
     coordinate: [64, 332]
     rotation: 0
     state: disabled
+- name: blocks_pdu_set_0
+  id: blocks_pdu_set
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: pmt.intern("key")
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    v: pmt.intern("value")
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1105, 88]
+    rotation: 0
+    state: true
 - name: blocks_pdu_to_tagged_stream_0
   id: blocks_pdu_to_tagged_stream
   parameters:
@@ -196,7 +213,43 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [611, 224]
+    coordinate: [722, 220]
+    rotation: 0
+    state: true
+- name: blocks_stream_to_tagged_stream_0
+  id: blocks_stream_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    len_tag_key: '"packet_len"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    packet_len: '24'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [246, 215]
+    rotation: 0
+    state: true
+- name: blocks_tagged_stream_to_pdu_0
+  id: blocks_tagged_stream_to_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [361, 322]
     rotation: 0
     state: true
 - name: blocks_unpacked_to_packed_xx_0
@@ -346,7 +399,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [26, 134]
+    coordinate: [502, 11]
     rotation: 0
     state: enabled
 - name: import_0_0
@@ -359,7 +412,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [25, 181]
+    coordinate: [399, 12]
     rotation: 0
     state: enabled
 - name: note_0
@@ -463,7 +516,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [371, 217]
+    coordinate: [511, 212]
     rotation: 0
     state: true
 - name: satellites_nrzi_encode_0
@@ -478,7 +531,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [884, 229]
+    coordinate: [987, 224]
     rotation: 0
     state: true
 - name: sub_port
@@ -490,7 +543,7 @@ blocks:
     label: Input
     short_id: s
     type: ''
-    value: '5501'
+    value: '"5500"'
   states:
     bus_sink: false
     bus_source: false
@@ -521,7 +574,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1087, 226]
+    coordinate: [1167, 221]
     rotation: 0
     state: true
 - name: virtual_source_0
@@ -550,27 +603,33 @@ blocks:
     coordinate: [202, 548]
     rotation: 0
     state: true
-- name: zeromq_sub_msg_source_0
-  id: zeromq_sub_msg_source
+- name: zeromq_sub_source_0
+  id: zeromq_sub_source
   parameters:
-    address: default_id+":"+sub_port
+    address: default_ip+":"+sub_port
     affinity: ''
     alias: ''
     comment: ''
+    hwm: '-1'
     maxoutbuf: '0'
     minoutbuf: '0'
+    pass_tags: 'False'
     timeout: '100'
+    type: byte
+    vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [68, 238]
+    coordinate: [9, 207]
     rotation: 0
-    state: enabled
+    state: true
 
 connections:
 - [blocks_message_strobe_0, strobe, satellites_hdlc_framer_0, in]
 - [blocks_pdu_to_tagged_stream_0, '0', satellites_nrzi_encode_0, '0']
+- [blocks_stream_to_tagged_stream_0, '0', blocks_tagged_stream_to_pdu_0, '0']
+- [blocks_tagged_stream_to_pdu_0, pdus, satellites_hdlc_framer_0, in]
 - [blocks_unpacked_to_packed_xx_0, '0', digital_gfsk_mod_0, '0']
 - [digital_gfsk_mod_0, '0', virtual_sink_0, '0']
 - [freq_xlating_fft_filter_ccc_0, '0', iio_fmcomms2_sink_0, '0']
@@ -579,7 +638,7 @@ connections:
 - [virtual_source_0, '0', freq_xlating_fft_filter_ccc_0, '0']
 - [virtual_source_0, '0', qtgui_waterfall_sink_x_0, '0']
 - [virtual_source_0_0, '0', blocks_unpacked_to_packed_xx_0, '0']
-- [zeromq_sub_msg_source_0, out, satellites_hdlc_framer_0, in]
+- [zeromq_sub_source_0, '0', blocks_stream_to_tagged_stream_0, '0']
 
 metadata:
   file_format: 1
