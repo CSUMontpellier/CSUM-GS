@@ -13,7 +13,7 @@ PUB_IP_DEFAULT = '127.0.0.1'
 PUB_PORT = 5500
 MIN_FLAG_COUNTER = 50
 
-ASM = [0x5A, 0x0F, 0xBE, 0x66]
+ASM = [0x5A, 0xF0, 0x7D, 0x66]
 
 class Transmitter():
 
@@ -28,8 +28,9 @@ class Transmitter():
 
     def run(self):
         while(1):
-            self.tx_buffer = b'\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19'
-            self.tx_buffer = len(self.tx_buffer).to_bytes(1, 'big') + self.tx_buffer
+            # Example of GET PARAM TTC_HK_TEMP_LIMIT packet
+            self.tx_buffer = b'\x20\x41\xCF\x00\x00\x09\x01\x00\x08\xE0\x13\x00\x04\x02\x02'
+            self.tx_buffer = (len(self.tx_buffer) + 1).to_bytes(1, 'big') + self.tx_buffer
             # Compute CheckSum
             crc = CrcX25.calc(self.tx_buffer)
             crc_b1 = bytes([0x00FF & crc])
@@ -65,7 +66,7 @@ class Transmitter():
 
     def transmit_preamble(self):
         count = 0
-        while count < 100:
+        while count < 32:
             self._out_byte = 0x55
             self.transmit_byte()
             count += 1

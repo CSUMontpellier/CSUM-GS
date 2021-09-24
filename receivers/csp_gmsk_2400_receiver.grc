@@ -306,7 +306,7 @@ blocks:
     label: ''
     short_id: f
     type: intx
-    value: '435500000'
+    value: '437000000'
   states:
     bus_sink: false
     bus_source: false
@@ -323,7 +323,7 @@ blocks:
     label: ''
     short_id: i
     type: ''
-    value: '"ip:pluto.local"'
+    value: '"ip:pluto-mission-test.local"'
   states:
     bus_sink: false
     bus_source: false

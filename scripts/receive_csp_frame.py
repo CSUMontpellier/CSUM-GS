@@ -236,7 +236,7 @@ class Receiver():
                 self.bit_counter = 0
                 # Check if we reached the end of the packet
                 # We look for a 2 bytes CRC that is not counted in RADIO LENGTH.
-                if (self.frameIndex <= self.packet_received_length + 2): 
+                if (self.frameIndex < self.packet_received_length + 2): 
                     self.rx_buffer += bytes([self.byte])
                     self.frameIndex += 1
                     self.byte = 0
