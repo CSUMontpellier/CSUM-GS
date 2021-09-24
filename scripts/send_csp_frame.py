@@ -15,6 +15,8 @@ MIN_FLAG_COUNTER = 50
 
 ASM = [0x5A, 0xF0, 0x7D, 0x66]
 
+COMMAND = b'\x20\x41\xCF\x00\x00\x09\x01\x00\x08\xE0\x13\x00\x04\x02\x02'
+
 class Transmitter():
 
     def __init__(self):
@@ -29,7 +31,7 @@ class Transmitter():
     def run(self):
         while(1):
             # Example of GET PARAM TTC_HK_TEMP_LIMIT packet
-            self.tx_buffer = b'\x20\x41\xCF\x00\x00\x09\x01\x00\x08\xE0\x13\x00\x04\x02\x02'
+            self.tx_buffer = COMMAND
             self.tx_buffer = (len(self.tx_buffer) + 1).to_bytes(1, 'big') + self.tx_buffer
             # Compute CheckSum
             crc = CrcX25.calc(self.tx_buffer)
@@ -73,7 +75,7 @@ class Transmitter():
 
     def transmit_postamble(self):
         count = 0
-        while count < 20:
+        while count < 32:
             self._out_byte = 0x55
             self.transmit_byte()
             count += 1

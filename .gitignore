@@ -9,3 +9,4 @@ docs/_build
 # Remove gnuradio generated python files
 receivers/*.py
 transmitters/*.py
+scripts/srdb_lib
