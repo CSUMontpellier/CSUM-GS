@@ -8,8 +8,9 @@ from crccheck.crc import CrcX25
 
 print("\033[0;36m["+datetime.utcnow().isoformat()+"+UTC]","[receive_csp_frame]\033[0m", "Starting")
 
-SUB_IP_DEFAULT = '127.0.0.1'
+IP_DEFAULT = '127.0.0.1'
 SUB_PORT = 5600
+PUB_PORT = 5601
 
 ASM = [0x5A, 0x0F, 0xBE, 0x66]
 
@@ -46,8 +47,9 @@ class Receiver():
         self._tcp_byte = 0
         self._in_buffer = b''
 
-        self.sub_ip = SUB_IP_DEFAULT
+        self.ip = IP_DEFAULT
         self.sub_port = SUB_PORT
+        self.pub_port = PUB_PORT
 
         self.connect_to_server()
             
@@ -88,11 +90,19 @@ class Receiver():
         try:
             context = zmq.Context()
             self.subscriber = context.socket(zmq.SUB)
-            self.subscriber.connect("tcp://{}:{}".format(self.sub_ip, self.sub_port))
+            self.subscriber.connect("tcp://{}:{}".format(self.ip, self.sub_port))
             self.subscriber.setsockopt_string(zmq.SUBSCRIBE, '')
-            print("\033[0;36m["+datetime.utcnow().isoformat()+"+UTC]","[receive_csp_frame]\033[0m", "SUCCESS: Subscribed to address {} port {}".format(self.sub_ip, self.sub_port))
+            print("\033[0;36m["+datetime.utcnow().isoformat()+"+UTC]","[receive_csp_frame]\033[0m", "SUCCESS: Subscribed to address {} port {}".format(self.ip, self.sub_port))
         except:
-            print("\033[0;36m["+datetime.utcnow().isoformat()+"+UTC]","[receive_csp_frame]\033[0m", "ERROR: Could not connect to address {} port {}".format(self.sub_ip, self.sub_port))
+            print("\033[0;36m["+datetime.utcnow().isoformat()+"+UTC]","[receive_csp_frame]\033[0m", "ERROR: Could not connect to address {} port {}".format(self.ip, self.sub_port))
+        else:
+            try:
+                self.publisher = context.socket(zmq.PUB)
+                self.publisher.connect("tcp://{}:{}".format(self.ip,self.pub_port))
+                print("\033[0;36m["+datetime.utcnow().isoformat()+"+UTC]","["+sys.argv[0]+"]\033[0m", "SUCCESS: Publishing to address {} port {}".format(self.ip, self.pub_port))
+            except Exception as e:
+                print(e)
+                print("\033[0;36m["+datetime.utcnow().isoformat()+"+UTC]","["+sys.argv[0]+"]\033[0m", "WARNING: Could not connect to address {} port {}. Not publishing".format(self.ip, self.pub_port))
 
     def receive_task(self, max_length):
         if self.taskState == RX_STATE_INIT: # Init all variable for a new RX Process
