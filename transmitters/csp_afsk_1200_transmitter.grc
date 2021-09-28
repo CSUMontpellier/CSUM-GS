@@ -93,7 +93,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '437000000'
+    value: '435800000'
   states:
     bus_sink: false
     bus_source: false
@@ -377,7 +377,7 @@ blocks:
     label: ''
     short_id: i
     type: ''
-    value: '"ip:pluto-mission-test.local"'
+    value: '"ip:pluto.local"'
   states:
     bus_sink: false
     bus_source: false
