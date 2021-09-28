@@ -65,6 +65,8 @@ class Receiver():
                     for b in self.rx_buffer:
                         print(hex(b), end=' ')
                     print()
+                    csp_packet = self.rx_buffer[1:-2]
+                    sent = self.publisher.send(bytes(csp_packet))
                     sys.stdout.flush()
                     self.rx_buffer = b''
 
