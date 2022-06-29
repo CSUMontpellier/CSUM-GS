@@ -50,6 +50,11 @@ This script will keep listening to port ZMQ 5500 for new packets. Any data that 
 
 .. tip:: By default, the receiver gnuradio radio scripts are configured to receive signals at 435.8 MHz. Verify if that is the same transmission frequency of the satellite.
 
+Dependencies
+++++++++++++
+
+* `gr-gpredict-doppler <https://github.com/wnagele/gr-gpredict-doppler>`_
+
 Indices and tables
 ==================
 
