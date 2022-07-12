@@ -337,7 +337,7 @@ blocks:
     label: ''
     short_id: i
     type: ''
-    value: '"ip:pluto-mission-test.local"'
+    value: '"ip:pluto.local"'
   states:
     bus_sink: false
     bus_source: false
@@ -744,7 +744,7 @@ blocks:
     noradID: '152225'
     source: AAAAAA
     tstamp: ''
-    url: http://localhost:7000/store_beacon
+    url: https://ddp.csum.umontpellier.fr/store_beacon
   states:
     bus_sink: false
     bus_source: false
