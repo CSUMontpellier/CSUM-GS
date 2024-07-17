@@ -15,11 +15,14 @@ For some satellites it is possible to send telecommands to communicate with the 
 
 This repository contains a set of tools and scripts that you can use to interact with, and contributes to CSUM satellites operations.
 
+The pages **1U Decoder** and **3U Decoder** are old version of the documentation. The scripts used are not maintained anymore, however you can find them in previous commit of this repository. The pages are still here for additional information.
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
    
+   satellites
    installation
    demodulators
    decoding_1u
