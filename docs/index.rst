@@ -19,7 +19,9 @@ This repository contains a set of tools and scripts that you can use to interact
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-
+   
+   installation
+   demodulators
    decoding_1u
    decoding_3u
 
