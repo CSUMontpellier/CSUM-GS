@@ -20,7 +20,6 @@ The pages **1U Decoder** and **3U Decoder** are old version of the documentation
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
    
    satellites
    installation

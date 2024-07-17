@@ -51,9 +51,27 @@ To record the IQs, set the demodulation to **Raw I/Q** in the tab **Receiver Opt
 
 Now you can play the IQs in the demodulator !
 
-Change the sampling rate at the input
-*************************************
+Changing the sampling rate at the input
+***************************************
 
 If your IQ record have a different sampling rate, you can insert the block **Rational Resampler** between the **File Source** and the **Throttle** to convert it.
 
 Check https://wiki.gnuradio.org/index.php/Sample_Rate_Change for more information.
+
+
+Demodulator flowgraphs
+**********************
+
+GMSK2400
+~~~~~~~~
+
+.. image:: _static/csum_demod_gmsk2k4.png
+  :width: 100%
+  :alt: GMSK2400 demodulator flowgraph
+
+GMSK9600
+~~~~~~~~
+
+.. image:: _static/csum_demod_gmsk9k6.png
+  :width: 100%
+  :alt: GMSK9600 demodulator flowgraph
