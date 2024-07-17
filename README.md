@@ -7,7 +7,7 @@ This is the public Github repository of the ground segment of the **Centre Spati
 ## Documentation
 
 
-You can read the documentation only there: [documentation](https://csum-gs.readthedocs.io/en/latest/)
+You can read the online version of the documentation there: [documentation](https://csum-gs.readthedocs.io/en/latest/)
 
 You can also build it and open it locally. On Ubuntu, open a terminal and type:
 
