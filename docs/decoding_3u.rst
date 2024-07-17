@@ -1,6 +1,10 @@
 3U Decoder
 ==========
 
+.. warning::
+
+    This page is not maintained anymore, nor are the scripts. It is kept for additional information.
+
 Reception
 +++++++++
 
