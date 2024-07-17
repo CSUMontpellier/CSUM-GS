@@ -1,12 +1,20 @@
-.. CSUM GS Modules documentation master file, created by
-   sphinx-quickstart on Mon Dec 14 11:01:36 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+CSUM GS repository
+==================
 
-Welcome to CSUM GS Modules's documentation!
-===========================================
+On this repository you will find public scripts and tools used to communicates with CSUM's satellites of the Robusta family.
 
-The scripts in this repository can be used to establish a communication link with the Robusta family of satellite missions from the Centre Spatial Universitaire Montpellier (CSUM). The scripts are provided as a set of signal and data processing blocks that encode or decode radio packets that can be sent to or received from Robusta platforms. The CSUM is developing a 1U and a 3U platform. The decoding and encoding process for each platform is explained in the sections below. 
+Centre Spatial Universitaire de Montpellier
+*******************************************
+
+The Centre Spatial Universitaire de Montpellier develops 1U and 3U nanosatellites platform and missions.
+
+Most of these platforms communicates in the UHF band of 70 cm (around 435 MHz). This frequency bands belongs to the amateur radio band.
+It is possible for anyone to receives, demodulates and decodes radio packets from satellites in this band.
+
+For some satellites it is possible to send telecommands to communicate with the radio amateur module on-board.
+
+This repository contains a set of tools and scripts that you can use to interact with, and contributes to CSUM satellites operations.
+
 
 .. toctree::
    :maxdepth: 2
