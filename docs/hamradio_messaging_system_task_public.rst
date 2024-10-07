@@ -1,8 +1,8 @@
 .. _firmware-tasks-hamradio-messaging-task:
 .. sectnum::
 
-HAM Radio Messaging System Task
-===============================
+Robusta 3A HAM Radio Messaging System Task
+==========================================
 
 .. contents:: Table of Contents
     :depth: 3
