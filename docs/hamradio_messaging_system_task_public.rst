@@ -13,7 +13,7 @@ Overview
 The HAM radio messaging system provides a message-exchanging service between amateur radio users using Robusta satellite missions as relays. The main purpose of the system is to enable HAM radio operators to send and receive messages from anywhere in the world without having a direct (end-to-end) connection  between them.
 The messaging system uses a method called ‘store and forward’ to provide this service. Messages are transported to the relay station (satellite) by a radio link, and from one geographical location to another, by the satellite orbital movement. An user sends a message to the satellite during a pass and the message is stored in the satellite's memory. The satellite then moves in its orbit, making the stored message available for other HAM radio operators. Users can request messages to the satellite which, in turn will check if there are any stored messages available for that particular operator. Finally, the message is transmitted and it arrives at its destination.
 
-.. figure:: images/ham.gif
+.. figure:: _static/images/ham.gif
       :width: 40%
       :align: center
       :alt: HAM radio messaging system task packet flow diagram
@@ -35,7 +35,7 @@ they want to execute. These data sets are called HAM radio packets.
 User must create and configure they HAM radio packets as given in the section HAM radio packets using the data diffusion platform.
 After the creation of the HAM radio packet users can use their own RF communication system to send them to the satellite. 
 
-.. figure:: images/ham_steps.svg
+.. figure:: _static/images/ham_steps.svg
       :scale: 100 %
       :align: center
       :alt: HAM radio messaging system flow 
@@ -93,7 +93,7 @@ HAM radio packets have different configurations for different command and comman
 HAM Radio User Packets
 **********************
 
-.. figure:: images/callsign.svg
+.. figure:: _static/images/callsign.svg
       :scale: 120 %
       :align: center
       :alt: Call sign
@@ -105,7 +105,7 @@ In the figure above we can see a call sign, it consist of two parts 'Prefix' and
 
 * Send Message Command
 
-.. figure:: images/ham_sending_message.svg
+.. figure:: _static/images/ham_sending_message.svg
       :scale: 120 %
       :align: center
       :alt: Send message command configuration
@@ -124,7 +124,7 @@ then it will store the message. These constraints have predefined values and can
 
 * Ask Message Command
 
-.. figure:: images/ham_asking_message.svg
+.. figure:: _static/images/ham_asking_message.svg
       :scale: 120 %
       :align: center
       :alt: Ask message command configuration
@@ -136,7 +136,7 @@ The 'Sender Call Sign' is the call sign for which the satellite will search a st
 When the user sends this packet and the satellite receives it, the HAM radio messaging system task will check the validity, create a packet containing the
 message and send it if there is a message for the requested call sign (therefore the requesting user).
 
-.. figure:: images/ham_message_sat.svg
+.. figure:: _static/images/ham_message_sat.svg
       :scale: 120 %
       :align: center
       :alt: Ask message command response packet configuration
@@ -170,7 +170,7 @@ of the data diffusion platform in order to read the message it contain.
 
 * Get Saved Messages ID Command
 
-.. figure:: images/ham_get_id.svg
+.. figure:: _static/images/ham_get_id.svg
       :scale: 120 %
       :align: center
       :alt: Get messages id command packet configuration
@@ -181,7 +181,7 @@ The 'Command Type' must be 'u' because its a user command and the 'Command' must
 When the user send this packet and the satellite receives it, the HAM radio messaging system task will check the validity, check if there are saved messages,  
 create a packet containing the identifiers of those saved messages and send it.
 
-.. figure:: images/ham_rep.svg
+.. figure:: _static/images/ham_rep.svg
       :scale: 120 %
       :align: center
       :alt: Get messages id command response packet configuration
@@ -198,7 +198,7 @@ be sent to report an error. Based on the situation the HAM radio messaging syste
 For example if you send a HAM radio packet with 'Send Message' command and your packet is valid, the satellite will reply you with an ACK packet.
 There are several different case which reply a ACK/NACK packet, those case can be seen in the functional diagram.
 
-.. figure:: images/ham_ack.svg
+.. figure:: _static/images/ham_ack.svg
       :scale: 110 %
       :align: center
       :alt: ACK/NACK packet Data field configuration
@@ -244,7 +244,7 @@ Valid characters
 
 The valid characters in the Ham radio messaging system are shown below.
 
-.. figure:: images/ham_char.svg
+.. figure:: _static/images/ham_char.svg
       :name: char_table
       :width: 40%
       :align: center
@@ -276,7 +276,7 @@ received HAM radio packets to read the message they contain. A general view of t
 
 `Link to access the Data Diffusion Platform <https://ddp.csum.umontpellier.fr/>`_
 
-.. figure:: images/Ham_ddp.png
+.. figure:: _static/images/Ham_ddp.png
       :width: 75%
       :align: center
       :alt: HAM radio messaging system data diffusion platform
@@ -293,13 +293,13 @@ AX.25 encapsulation
 The HAM Radio packets are encapsulated into an AX.25 packet, when transmitted on the radio link. 
 This is the format of the AX.25 packet used in uplink and in downlink:
 
-.. figure:: images/ham_radio_uplink_packet.png
+.. figure:: _static/images/ham_radio_uplink_packet.png
       :align: center
       :alt: Encapsulation of HAM radio packet in AX.25 packet for uplink
 
       Encapsulation of HAM radio packet in AX.25 packet for uplink.
 
-.. figure:: images/ham_radio_downlink_packet.png
+.. figure:: _static/images/ham_radio_downlink_packet.png
       :align: center
       :alt: Encapsulation of HAM radio packet in AX.25 packet for downlink
 
