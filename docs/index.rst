@@ -26,4 +26,5 @@ The pages **1U Decoder** and **3U Decoder** are old version of the documentation
    demodulators
    decoding_1u
    decoding_3u
+   rob3a_hamradio_messaging_system_task_public
 
